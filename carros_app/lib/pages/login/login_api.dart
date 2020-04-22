@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:carrosapp/pages/api_response.dart';
-import 'package:carrosapp/pages/usuario.dart';
+import 'package:carrosapp/pages/login/usuario.dart';
 import 'package:http/http.dart'
     as http; // as http é a variavel que tu vai usar pra chamar a lib
 
@@ -24,17 +24,23 @@ class LoginApi {
       print('Response body: ${response.body}');
 
       Map mapResponse = json.decode(response.body);
+
       if(response.statusCode==200){
         //fazer o parse do json direto na classe do objeto no construtor
-        final user = Usuario(mapResponse);
-        return ApiResponse.ok(user);
-      }else{
-        return ApiResponse.error(mapResponse["error"]);
+        final user = Usuario.fromJson(mapResponse);
+        user.save();
+        Usuario user2 = await Usuario.get();
+        print("user 2 $user2 ");
+
+        return ApiResponse.ok(result:user);
+        
       }
+
+      return ApiResponse.error(msg: mapResponse["error"]);
 
     }catch(error, exception){
       print("erro no login $error > $exception" );
-      return ApiResponse.error("Não foi possivel fazer o login.");
+      return ApiResponse.error(msg:"Não foi possivel fazer o login.");
     }
   }
 }

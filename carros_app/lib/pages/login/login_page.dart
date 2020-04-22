@@ -1,7 +1,7 @@
 import 'package:carrosapp/pages/api_response.dart';
-import 'package:carrosapp/pages/home_page.dart';
-import 'package:carrosapp/pages/login_api.dart';
-import 'package:carrosapp/pages/usuario.dart';
+import 'package:carrosapp/pages/carro/home_page.dart';
+import 'package:carrosapp/pages/login/login_api.dart';
+import 'package:carrosapp/pages/login/usuario.dart';
 import 'package:carrosapp/utils/alert.dart';
 import 'package:carrosapp/utils/nav.dart';
 import 'package:carrosapp/widgets/app_button.dart';
